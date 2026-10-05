@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sanmesh Nikam | Data Analyst Portfolio</title>
+<meta name="description" content="Data analyst in Pune with experience in SQL, Python, Power BI and operational reporting.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    --bg: #F3F5F8;
+    --surface: #FFFFFF;
+    --ink: #131C28;
+    --muted: #566272;
+    --line: #D8DFE7;
+    --track: #E3E9F0;
+    --chip: #E9EFF6;
+    --blue: #2E5E8C;
+    --link: #1F4E7F;
+    --signal: #F2C811;
+    --signal-ink: #131C28;
+    --navy: #0C1626;
+    --navy-2: #14233A;
+    --on-navy: #EAF0F7;
+    --on-navy-muted: #9FB0C4;
+    --display: "Bricolage Grotesque", "Segoe UI", Helvetica, Arial, sans-serif;
+    --body: "Instrument Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0E141C; --surface: #16202C; --ink: #E9EEF3; --muted: #9BA7B5;
+      --line: #263242; --track: #223041; --chip: #1F2B3A; --blue: #6FA3D6; --link: #8DBDEB;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0E141C; --surface: #16202C; --ink: #E9EEF3; --muted: #9BA7B5;
+    --line: #263242; --track: #223041; --chip: #1F2B3A; --blue: #6FA3D6; --link: #8DBDEB;
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 4.5rem); scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 1.0625rem; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: var(--link); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; border-radius: 4px; }
+  .wrap { max-width: 72rem; margin: 0 auto; padding: 0 1.5rem; }
+  h1, h2, h3, h4 { font-family: var(--display); letter-spacing: -0.02em; }
+
+  /* Progress bar */
+  #progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; background: var(--signal); transform: scaleX(0); transform-origin: 0 50%; z-index: 60; }
+
+  /* Header */
+  .site-header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: rgba(12,22,38,.93); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,.08); }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.8rem 0; flex-wrap: wrap; }
+  .mark { font-family: var(--display); font-weight: 800; font-size: 1.1rem; color: #fff; text-decoration: none; letter-spacing: -0.01em; }
+  .mark i { display: inline-block; width: 10px; height: 10px; background: var(--signal); border-radius: 2px; margin-right: 0.55rem; }
+  .nav { display: flex; align-items: center; gap: 0.25rem; flex-wrap: wrap; }
+  .nav a { color: var(--on-navy-muted); text-decoration: none; font-size: 0.95rem; padding: 0.35rem 0.7rem; border-radius: 4px; }
+  .nav a:hover { color: #fff; }
+  .nav a.active { color: #fff; box-shadow: inset 0 -2px 0 var(--signal); border-radius: 0; }
+  #theme { background: transparent; border: 1px solid rgba(255,255,255,.25); color: var(--on-navy); border-radius: 999px; padding: 0.3rem 0.85rem; font: inherit; font-size: 0.88rem; cursor: pointer; margin-left: 0.5rem; }
+  #theme:hover { border-color: var(--signal); }
+
+  /* Hero */
+  .hero { background-color: var(--navy); background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px); background-size: 22px 22px; color: var(--on-navy); }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 3.5rem; align-items: center; padding: 4.5rem 0 5.5rem; }
+  .hero h1 { font-weight: 800; font-size: clamp(2.8rem, 7vw, 5.2rem); line-height: 0.95; letter-spacing: -0.035em; margin: 0 0 1.1rem; color: #fff; }
+  .hero .role { font-family: var(--display); font-size: 1.3rem; font-weight: 500; color: var(--signal); margin: 0 0 1.1rem; }
+  .hero .lede { max-width: 33rem; color: var(--on-navy-muted); margin: 0 0 2rem; font-size: 1.1rem; }
+  .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; }
+  .btn { display: inline-block; padding: 0.75rem 1.3rem; border-radius: 6px; font: inherit; font-weight: 600; font-size: 0.98rem; text-decoration: none; cursor: pointer; border: 2px solid currentColor; background: transparent; color: inherit; }
+  .btn.primary { background: var(--signal); border-color: var(--signal); color: var(--signal-ink); }
+  .btn.primary:hover { filter: brightness(0.95); }
+  .btn.ghost { color: var(--on-navy); border-color: rgba(255,255,255,.35); }
+  .btn.ghost:hover { border-color: #fff; }
+  .quick { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; list-style: none; }
+  .quick li { border: 1px solid rgba(255,255,255,.2); border-radius: 999px; padding: 0.2rem 0.8rem; font-size: 0.9rem; color: var(--on-navy); }
+
+  /* Impact report panel */
+  .report { margin: 0; background: var(--navy-2); border: 1px solid rgba(255,255,255,.12); border-radius: 14px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,.35); }
+  .report-head { display: flex; align-items: center; gap: 0.6rem; padding: 0.85rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,.1); font-family: var(--display); font-weight: 700; font-size: 1rem; color: #fff; }
+  .report-head i { width: 12px; height: 12px; border-radius: 3px; background: var(--signal); }
+  .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,.1); }
+  .kpi { background: var(--navy-2); padding: 1.25rem; }
+  .kpi.wide { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 1.25rem; flex-wrap: wrap; }
+  .kpi .num { font-family: var(--display); font-weight: 800; font-size: 2.6rem; line-height: 1; letter-spacing: -0.03em; color: #fff; }
+  .kpi.wide .num { font-size: 3.6rem; color: var(--signal); }
+  .kpi .lbl { color: var(--on-navy-muted); font-size: 0.9rem; line-height: 1.35; margin-top: 0.55rem; }
+  .kpi.wide .lbl { margin: 0; font-size: 1rem; }
+  .meter { height: 8px; background: rgba(255,255,255,.12); border-radius: 2px; margin-top: 0.9rem; overflow: hidden; }
+  .meter i { display: block; height: 100%; width: 0; background: var(--signal); border-radius: 2px; transition: width 1.3s cubic-bezier(.2,.7,.2,1); }
+  .report.loaded .meter i { width: var(--w); }
+  .report.loaded .kpi:nth-child(3) .meter i { transition-delay: .15s; }
+  .report.loaded .kpi:nth-child(4) .meter i { transition-delay: .3s; }
+  .report-foot { padding: 0.8rem 1.25rem; font-size: 0.88rem; color: var(--on-navy-muted); border-top: 1px solid rgba(255,255,255,.1); }
+
+  /* Sections */
+  section.block { padding: 5rem 0; border-bottom: 1px solid var(--line); }
+  section.block:last-of-type { border-bottom: 0; }
+  .sec-head { margin-bottom: 2.25rem; max-width: 40rem; }
+  .sec-head h2 { font-size: clamp(1.8rem, 3.6vw, 2.5rem); line-height: 1.05; margin: 0 0 0.6rem; }
+  .sec-head p { color: var(--muted); margin: 0; }
+
+  /* About */
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 3rem; align-items: start; }
+  .about-grid p { margin: 0 0 1rem; max-width: 38rem; }
+  .facts { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 0.5rem 1.5rem; margin: 0; }
+  .facts div { padding: 1rem 0; border-bottom: 1px solid var(--line); }
+  .facts div:last-child { border-bottom: 0; }
+  .facts dt { color: var(--muted); font-size: 0.9rem; }
+  .facts dd { margin: 0.1rem 0 0; font-family: var(--display); font-weight: 700; font-size: 1.1rem; letter-spacing: -0.01em; }
+
+  /* Slicer */
+  .slicer-wrap { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1.1rem 1.25rem; margin-bottom: 2rem; }
+  .slicer-wrap h3 { margin: 0 0 0.7rem; font-size: 1.05rem; }
+  .slicer { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .slicer button { font: inherit; font-size: 0.95rem; padding: 0.4rem 0.95rem; border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; }
+  .slicer button:hover { border-color: var(--blue); }
+  .slicer button[aria-pressed="true"] { background: var(--signal); border-color: var(--signal); color: var(--signal-ink); font-weight: 600; }
+  #match { margin: 0.8rem 0 0; font-size: 0.92rem; color: var(--muted); }
+
+  /* Career bar */
+  .career { margin-bottom: 2.5rem; }
+  .career-bar { display: flex; height: 14px; border-radius: 3px; overflow: hidden; gap: 3px; }
+  .career-bar i { display: block; }
+  .career-bar .a { flex: 36; background: var(--blue); }
+  .career-bar .b { flex: 6; background: var(--signal); }
+  .career-legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1.75rem; margin-top: 0.7rem; font-size: 0.92rem; color: var(--muted); }
+  .career-legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 0.45rem; background: var(--blue); }
+  .career-legend span.b::before { background: var(--signal); }
+
+  /* Work items */
+  .work-item { transition: opacity .3s ease, filter .3s ease; }
+  .work-item.dim { opacity: 0.25; filter: grayscale(0.7); }
+  .sub { font-size: 1.15rem; margin: 0 0 1.25rem; }
+  .roles { list-style: none; margin: 0 0 3.5rem; padding: 0; display: grid; gap: 1.25rem; }
+  .role-card { background: var(--surface); border: 1px solid var(--line); border-left: 5px solid var(--blue); border-radius: 12px; padding: 1.6rem 1.75rem; }
+  .role-card.hospital { border-left-color: var(--signal); }
+  .role-card h4 { font-size: 1.3rem; margin: 0; }
+  .role-card .where { color: var(--muted); margin: 0.15rem 0 1rem; font-size: 0.98rem; }
+  .role-card ul.points { margin: 0 0 1.1rem; padding-left: 1.1rem; max-width: 46rem; }
+  .role-card ul.points li { margin-bottom: 0.5rem; }
+  .role-card ul.points li::marker { color: var(--blue); }
+  .tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tags li { font-size: 0.85rem; padding: 0.15rem 0.65rem; border-radius: 999px; background: var(--chip); color: var(--muted); transition: background .2s, color .2s; }
+  .tags li.on { background: var(--signal); color: var(--signal-ink); font-weight: 600; }
+
+  .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .project { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+  .project-top { padding: 1.4rem 1.6rem 1.2rem; background: var(--navy-2); color: #fff; }
+  .project-top h4 { font-size: 1.35rem; line-height: 1.15; margin: 0 0 0.5rem; }
+  .project-top p { margin: 0; color: var(--on-navy-muted); font-size: 0.95rem; }
+  .project-body { padding: 1.4rem 1.6rem 1.6rem; display: flex; flex-direction: column; gap: 1.25rem; flex: 1; }
+  .project-body h5 { font-family: var(--display); font-size: 0.98rem; margin: 0 0 0.6rem; }
+  .project-body ul.points { margin: 0; padding-left: 1.1rem; }
+  .project-body ul.points li { margin-bottom: 0.5rem; }
+  .project-body ul.points li::marker { color: var(--blue); }
+  .views { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr)); gap: 0.5rem; }
+  .views li { border: 1px solid var(--line); border-radius: 8px; padding: 0.55rem 0.7rem; font-size: 0.9rem; display: flex; align-items: center; gap: 0.55rem; background: var(--bg); }
+  .views li::before { content: ""; flex: none; width: 14px; height: 14px; background: linear-gradient(to top, var(--blue) 0 45%, transparent 45%) 0 100% / 4px 100% no-repeat, linear-gradient(to top, var(--signal) 0 80%, transparent 80%) 5px 100% / 4px 100% no-repeat, linear-gradient(to top, var(--blue) 0 60%, transparent 60%) 10px 100% / 4px 100% no-repeat; }
+  .project-body .tags { margin-top: auto; }
+
+  /* Skills */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr)); gap: 1.25rem; }
+  .skill-group { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1.4rem 1.5rem; }
+  .skill-group h3 { font-size: 1.1rem; margin: 0 0 0.9rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+  .chip { font: inherit; font-size: 0.9rem; padding: 0.25rem 0.75rem; border-radius: 999px; background: var(--chip); color: var(--ink); border: 1px solid transparent; }
+  button.chip { cursor: pointer; border-color: var(--signal); box-shadow: inset 3px 0 0 var(--signal); padding-left: 0.9rem; }
+  button.chip:hover { background: var(--signal); color: var(--signal-ink); }
+  .skills-hint { margin: 1.5rem 0 0; color: var(--muted); font-size: 0.95rem; }
+
+  /* Education */
+  .edu-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.5rem; }
+  .edu-list { display: grid; gap: 1rem; }
+  .edu-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 1.2rem 1.5rem; }
+  .edu-card h3 { font-size: 1.15rem; margin: 0 0 0.15rem; }
+  .edu-card p { margin: 0; color: var(--muted); }
+  .certs { background: var(--navy-2); color: var(--on-navy); border-radius: 12px; padding: 1.5rem 1.75rem; }
+  .certs h3 { font-size: 1.15rem; margin: 0 0 1rem; color: #fff; }
+  .certs ul { list-style: none; margin: 0; padding: 0; }
+  .certs li { padding: 0.7rem 0; border-bottom: 1px solid rgba(255,255,255,.12); }
+  .certs li:last-child { border-bottom: 0; padding-bottom: 0; }
+
+  /* Contact */
+  .contact-band { background-color: var(--navy); background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px); background-size: 22px 22px; color: var(--on-navy); }
+  .contact-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3.5rem; padding: 5rem 0; align-items: start; }
+  .contact-grid h2 { font-weight: 800; font-size: clamp(2rem, 4.6vw, 3.2rem); line-height: 1.02; letter-spacing: -0.035em; margin: 0 0 1.5rem; color: #fff; max-width: 30rem; }
+  .contact-list { list-style: none; margin: 0 0 1.5rem; padding: 0; }
+  .contact-list li { padding: 0.55rem 0; border-bottom: 1px solid rgba(255,255,255,.12); display: flex; gap: 1rem; flex-wrap: wrap; }
+  .contact-list span { min-width: 6rem; color: var(--on-navy-muted); }
+  .contact-list a { color: #fff; }
+  #copyStatus { margin-left: 0.75rem; font-size: 0.92rem; color: var(--signal); }
+  .composer { background: var(--navy-2); border: 1px solid rgba(255,255,255,.12); border-radius: 14px; padding: 1.5rem; }
+  .composer h3 { margin: 0 0 1rem; font-size: 1.2rem; color: #fff; }
+  .composer label { display: block; font-size: 0.92rem; margin-bottom: 0.3rem; color: var(--on-navy); }
+  .composer input, .composer textarea { width: 100%; font: inherit; color: #fff; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.25); border-radius: 6px; padding: 0.65rem 0.8rem; margin-bottom: 1rem; }
+  .composer textarea { min-height: 7.5rem; resize: vertical; }
+  .composer .note { margin: 0.8rem 0 0; font-size: 0.88rem; color: var(--on-navy-muted); }
+
+  footer { background: var(--navy); color: var(--on-navy-muted); font-size: 0.9rem; padding: 1.25rem 0 1.75rem; border-top: 1px solid rgba(255,255,255,.1); }
+  #toTop { position: fixed; right: 1.25rem; bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px)); z-index: 40; width: 2.75rem; height: 2.75rem; border-radius: 50%; border: 0; background: var(--signal); color: var(--signal-ink); font-size: 1.2rem; font-weight: 700; cursor: pointer; opacity: 0; pointer-events: none; transition: opacity .25s; box-shadow: 0 6px 18px rgba(0,0,0,.3); }
+  #toTop.show { opacity: 1; pointer-events: auto; }
+
+  @media (max-width: 56rem) {
+    .hero-grid, .about-grid, .edu-grid, .contact-grid, .projects { grid-template-columns: 1fr; }
+    .hero-grid { padding: 3rem 0 3.5rem; gap: 2.5rem; }
+    .contact-grid { padding: 3.5rem 0; gap: 2.5rem; }
+    section.block { padding: 3.5rem 0; }
+    .kpis { grid-template-columns: 1fr; }
+    .kpi.wide { grid-column: auto; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .meter i, .work-item, #toTop { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div id="progress" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="mark" href="#top"><i></i>Sanmesh Nikam</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+      <button id="theme" type="button" aria-label="Switch colour theme">Dark mode</button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Sanmesh Nikam</h1>
+        <p class="role">Data analyst in Pune</p>
+        <p class="lede">I turn operational and business data into clean datasets, reliable reports and Power BI dashboards. I have spent three years keeping real-time operations accurate.</p>
+        <div class="actions">
+          <a class="btn primary" href="#work">Explore my work</a>
+          <a class="btn ghost" href="#contact">Get in touch</a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/sanmesh-nikam-8375b6417" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <ul class="quick" aria-label="Core tools">
+          <li>Python</li><li>SQL</li><li>MySQL</li><li>Power BI</li><li>Excel</li>
+        </ul>
+      </div>
+
+      <figure class="report" id="report" aria-label="Results from my work at Rodeo Travel Technology">
+        <figcaption class="report-head"><i></i>Impact at Rodeo Travel Technology</figcaption>
+        <div class="kpis">
+          <div class="kpi wide">
+            <div class="num"><span data-count="200">200</span>+</div>
+            <div class="lbl">daily transactions supported with accurate, real-time data</div>
+          </div>
+          <div class="kpi">
+            <div class="num"><span data-count="40">40</span>%</div>
+            <div class="lbl">better system performance and data retrieval</div>
+            <div class="meter"><i style="--w:40%"></i></div>
+          </div>
+          <div class="kpi">
+            <div class="num"><span data-count="30">30</span>%</div>
+            <div class="lbl">better order accuracy</div>
+            <div class="meter"><i style="--w:30%"></i></div>
+          </div>
+          <div class="kpi">
+            <div class="num"><span data-count="25">25</span>%</div>
+            <div class="lbl">shorter delivery execution time</div>
+            <div class="meter"><i style="--w:25%"></i></div>
+          </div>
+        </div>
+        <div class="report-foot">Railway food delivery operations, Feb 2022 to Feb 2025</div>
+      </figure>
+    </div>
+  </div>
+
+  <section class="block" id="about" aria-labelledby="about-h">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="about-h">About me</h2></div>
+      <div class="about-grid">
+        <div>
+          <p>I am a data analyst with a B.Sc. in Computer Science. My work covers data cleaning, exploratory analysis, MIS reporting and KPI dashboards.</p>
+          <p>At Rodeo Travel Technology I managed the data behind railway food delivery, from order and inventory records to executive dashboards. At Government Civil Hospital, Jalgaon I kept a patient records database accurate and complete.</p>
+          <p>I work in Python (Pandas, NumPy, Matplotlib), SQL and MySQL, and Power BI with DAX. I also have working knowledge of machine learning fundamentals and REST API testing with Postman.</p>
+        </div>
+        <dl class="facts">
+          <div><dt>Based in</dt><dd>Pune, Maharashtra</dd></div>
+          <div><dt>Education</dt><dd>B.Sc. Computer Science</dd></div>
+          <div><dt>Experience</dt><dd>Feb 2022 to Aug 2025, two roles</dd></div>
+          <div><dt>Focus</dt><dd>Data analysis, MIS reporting, KPI dashboards</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="work" aria-labelledby="work-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="work-h">Work</h2>
+        <p>Two roles and two dashboard projects. Pick a skill to see where I used it.</p>
+      </div>
+
+      <div class="slicer-wrap">
+        <h3>Filter by skill</h3>
+        <div class="slicer" role="group" aria-label="Filter work by skill">
+          <button type="button" data-filter="all" aria-pressed="true">All work</button>
+          <button type="button" data-filter="python" aria-pressed="false">Python</button>
+          <button type="button" data-filter="sql" aria-pressed="false">SQL</button>
+          <button type="button" data-filter="powerbi" aria-pressed="false">Power BI</button>
+          <button type="button" data-filter="dashboards" aria-pressed="false">Dashboards</button>
+          <button type="button" data-filter="validation" aria-pressed="false">Data validation</button>
+          <button type="button" data-filter="reporting" aria-pressed="false">Reporting</button>
+        </div>
+        <p id="match" aria-live="polite">Showing all 4 items.</p>
+      </div>
+
+      <div class="career">
+        <div class="career-bar" role="img" aria-label="Career timeline: about three years at Rodeo Travel Technology, then six months at Government Civil Hospital">
+          <i class="a"></i><i class="b"></i>
+        </div>
+        <div class="career-legend">
+          <span>Rodeo Travel Technology, Feb 2022 to Feb 2025</span>
+          <span class="b">Government Civil Hospital, Feb 2025 to Aug 2025</span>
+        </div>
+      </div>
+
+      <h3 class="sub">Experience</h3>
+      <ul class="roles">
+        <li class="role-card hospital work-item" data-tags="validation reporting">
+          <h4>Data Management Analyst</h4>
+          <p class="where">Government Civil Hospital, Jalgaon | Feb 2025 to Aug 2025</p>
+          <ul class="points">
+            <li>Managed the patient records database and kept it accurate, complete and consistent with hospital operational standards.</li>
+            <li>Entered and verified structured data and ran quality checks to protect data integrity across hospital information systems.</li>
+            <li>Produced operational reports and documentation for hospital management and administrative coordination across departments.</li>
+            <li>Helped with database updates and system maintenance so hospital information systems ran without interruption.</li>
+          </ul>
+          <ul class="tags"><li data-tag="validation">Data validation</li><li data-tag="reporting">Reporting</li></ul>
+        </li>
+        <li class="role-card work-item" data-tags="sql validation dashboards reporting">
+          <h4>Operations Support</h4>
+          <p class="where">Rodeo Travel Technology Pvt. Ltd., Pune | Feb 2022 to Feb 2025</p>
+          <ul class="points">
+            <li>Led data management for railway food delivery operations, keeping data accurate and consistent with real-time visibility across 200+ daily transactions.</li>
+            <li>Designed and implemented database optimization and data management systems in SQL, improving system performance and data retrieval efficiency by 40%.</li>
+            <li>Developed operational workflows and process documentation that cut delivery execution time by 25%.</li>
+            <li>Built and maintained order and inventory management systems with validation checks, improving order accuracy by 30%.</li>
+            <li>Integrated multiple data sources to support real-time operational reporting and executive dashboards.</li>
+            <li>Worked with operations, logistics and technical teams to find process bottlenecks and reach operational targets.</li>
+          </ul>
+          <ul class="tags"><li data-tag="sql">SQL</li><li data-tag="validation">Data validation</li><li data-tag="dashboards">Dashboards</li><li data-tag="reporting">Reporting</li></ul>
+        </li>
+      </ul>
+
+      <h3 class="sub">Projects</h3>
+      <div class="projects">
+        <article class="project work-item" data-tags="python sql powerbi dashboards">
+          <div class="project-top">
+            <h4>E-Commerce Sales and Performance Dashboard</h4>
+            <p>Python, SQL and Power BI</p>
+          </div>
+          <div class="project-body">
+            <div>
+              <h5>What I did</h5>
+              <ul class="points">
+                <li>Cleaned and analyzed e-commerce data with Python and SQL to produce sales, customer, product and order insights.</li>
+                <li>Built an interactive Power BI dashboard with KPIs and slicers.</li>
+                <li>Transformed and analyzed the data to find sales trends, top products and overall business performance.</li>
+              </ul>
+            </div>
+            <div>
+              <h5>Dashboard views</h5>
+              <ul class="views"><li>Revenue</li><li>Orders</li><li>Product performance</li><li>Order status</li></ul>
+            </div>
+            <ul class="tags"><li data-tag="python">Python</li><li data-tag="sql">SQL</li><li data-tag="powerbi">Power BI</li><li data-tag="dashboards">Dashboards</li></ul>
+          </div>
+        </article>
+
+        <article class="project work-item" data-tags="python sql powerbi dashboards">
+          <div class="project-top">
+            <h4>Banking Customer and Loan Analytics</h4>
+            <p>Python, SQL, Power BI and DAX</p>
+          </div>
+          <div class="project-body">
+            <div>
+              <h5>What I did</h5>
+              <ul class="points">
+                <li>Analyzed and transformed customer, account and loan data with Python and SQL, including cleaning, EDA, aggregation, segmentation and KPI analysis.</li>
+                <li>Built an interactive Power BI dashboard using DAX, KPIs and slicers.</li>
+                <li>Designed the dashboard to support data-driven decisions.</li>
+              </ul>
+            </div>
+            <div>
+              <h5>Dashboard views</h5>
+              <ul class="views"><li>Loan status</li><li>Customer segments</li><li>Account balances</li><li>Loan performance</li><li>Branch insights</li></ul>
+            </div>
+            <ul class="tags"><li data-tag="python">Python</li><li data-tag="sql">SQL</li><li data-tag="powerbi">Power BI</li><li data-tag="dashboards">Dashboards</li></ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="skills" aria-labelledby="skills-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="skills-h">Skills</h2>
+        <p>Skills with a yellow edge are linked to my work. Select one to filter my roles and projects.</p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-group"><h3>Programming</h3><div class="chips">
+          <button class="chip" type="button" data-jump="python">Python</button>
+          <button class="chip" type="button" data-jump="sql">SQL</button>
+          <span class="chip">Python scripting</span><span class="chip">Object-oriented programming</span>
+        </div></div>
+        <div class="skill-group"><h3>Data analysis</h3><div class="chips">
+          <span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Data cleaning</span><span class="chip">Preprocessing</span><span class="chip">EDA</span><span class="chip">Statistical analysis</span>
+          <button class="chip" type="button" data-jump="reporting">MIS reporting</button>
+        </div></div>
+        <div class="skill-group"><h3>Visualization</h3><div class="chips">
+          <button class="chip" type="button" data-jump="powerbi">Power BI</button>
+          <button class="chip" type="button" data-jump="powerbi">DAX</button>
+          <button class="chip" type="button" data-jump="dashboards">Dashboard development</button>
+          <span class="chip">Matplotlib</span>
+        </div></div>
+        <div class="skill-group"><h3>Databases</h3><div class="chips">
+          <span class="chip">MySQL</span>
+          <button class="chip" type="button" data-jump="sql">SQL queries</button>
+          <span class="chip">Relational databases</span><span class="chip">Database management</span>
+        </div></div>
+        <div class="skill-group"><h3>ETL and data quality</h3><div class="chips">
+          <span class="chip">ETL processes</span><span class="chip">Data transformation</span>
+          <button class="chip" type="button" data-jump="validation">Data validation</button>
+          <span class="chip">Data quality</span>
+        </div></div>
+        <div class="skill-group"><h3>Machine learning</h3><div class="chips">
+          <span class="chip">Fundamentals</span><span class="chip">Supervised learning</span><span class="chip">Unsupervised learning</span><span class="chip">Feature engineering</span><span class="chip">Predictive analytics</span>
+        </div></div>
+        <div class="skill-group"><h3>Developer tools</h3><div class="chips">
+          <span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Postman</span><span class="chip">JSON</span><span class="chip">REST APIs</span>
+        </div></div>
+        <div class="skill-group"><h3>Office</h3><div class="chips">
+          <span class="chip">Excel</span><span class="chip">VLOOKUP</span><span class="chip">XLOOKUP</span><span class="chip">Pivot tables</span><span class="chip">Word</span><span class="chip">PowerPoint</span>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="education" aria-labelledby="edu-h">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="edu-h">Education and training</h2></div>
+      <div class="edu-grid">
+        <div class="edu-list">
+          <div class="edu-card"><h3>B.Sc. Computer Science</h3><p>Dr. Babasaheb Ambedkar Marathwada University</p></div>
+          <div class="edu-card"><h3>Higher Secondary Certificate</h3><p>Technical High School, Bhusawal, Jalgaon</p></div>
+          <div class="edu-card"><h3>Secondary School Certificate</h3><p>Shri Sant Gadge Baba Hindi School, Bhusawal</p></div>
+        </div>
+        <div class="certs">
+          <h3>Certifications and training</h3>
+          <ul>
+            <li>Python for Data Science and Machine Learning</li>
+            <li>Statistics for Data Science with Python</li>
+            <li>Frontend Web Development</li>
+            <li>C Programming</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-band" id="contact" aria-labelledby="contact-h">
+    <div class="wrap contact-grid">
+      <div>
+        <h2 id="contact-h">Looking for a data analyst in Pune? Let's talk.</h2>
+        <ul class="contact-list">
+          <li><span>Email</span><a id="emailLink" href="mailto:yashnikam1811@gmail.com">yashnikam1811@gmail.com</a></li>
+          <li><span>Phone</span><a href="tel:+919370863227">+91 93708 63227</a></li>
+          <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/sanmesh-nikam-8375b6417" target="_blank" rel="noopener">sanmesh-nikam-8375b6417</a></li>
+          <li><span>Location</span>Pune, Maharashtra</li>
+        </ul>
+        <button class="btn primary" id="copyEmail" type="button">Copy email address</button><span id="copyStatus" role="status"></span>
+      </div>
+      <div class="composer">
+        <h3>Send a message</h3>
+        <label for="cName">Your name</label>
+        <input id="cName" type="text" autocomplete="name">
+        <label for="cMsg">Message</label>
+        <textarea id="cMsg"></textarea>
+        <button class="btn primary" id="sendMsg" type="button">Open in my email app</button>
+        <p class="note">This opens your email app with your message filled in. Nothing is sent until you press send there.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">Sanmesh Nikam, Data Analyst, Pune</div></footer>
+<button id="toTop" type="button" aria-label="Back to top">&uarr;</button>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Theme */
+  var themeBtn = document.getElementById('theme');
+  function effective() {
+    var t = root.getAttribute('data-theme');
+    if (t) return t;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  function label() { themeBtn.textContent = effective() === 'dark' ? 'Light mode' : 'Dark mode'; }
+  try { var saved = localStorage.getItem('theme'); if (saved) root.setAttribute('data-theme', saved); } catch (e) {}
+  label();
+  themeBtn.addEventListener('click', function () {
+    var next = effective() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+
+  /* Hero: count up and fill bars once */
+  var report = document.getElementById('report');
+  function count() {
+    var nums = report.querySelectorAll('[data-count]');
+    nums.forEach(function (el) {
+      var target = +el.getAttribute('data-count');
+      if (reduce) { el.textContent = target; return; }
+      var start = null, dur = 1300;
+      el.textContent = '0';
+      function step(ts) {
+        if (start === null) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(target * eased);
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+    report.classList.add('loaded');
+  }
+  var started = false;
+  function startOnce() { if (!started) { started = true; count(); } }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (e) { if (e[0].isIntersecting) { startOnce(); io.disconnect(); } }, { threshold: 0.25 });
+    io.observe(report);
+  }
+  setTimeout(startOnce, 1200);
+
+  /* Scroll progress, back to top, scroll spy */
+  var progress = document.getElementById('progress');
+  var toTop = document.getElementById('toTop');
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav a'));
+  var sections = navLinks.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  function onScroll() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    progress.style.transform = 'scaleX(' + (max > 0 ? Math.min(h.scrollTop / max, 1) : 0) + ')';
+    toTop.classList.toggle('show', h.scrollTop > 700);
+    var current = -1, y = h.scrollTop + 140;
+    sections.forEach(function (s, i) { if (s && s.offsetTop <= y) current = i; });
+    navLinks.forEach(function (a, i) { a.classList.toggle('active', i === current); });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+  toTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
+
+  /* Skill slicer */
+  var buttons = Array.prototype.slice.call(document.querySelectorAll('.slicer button'));
+  var items = Array.prototype.slice.call(document.querySelectorAll('.work-item'));
+  var matchEl = document.getElementById('match');
+  var names = { python: 'Python', sql: 'SQL', powerbi: 'Power BI', dashboards: 'Dashboards', validation: 'Data validation', reporting: 'Reporting' };
+  function applyFilter(f) {
+    buttons.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-filter') === f ? 'true' : 'false'); });
+    var n = 0;
+    items.forEach(function (it) {
+      var tags = (it.getAttribute('data-tags') || '').split(' ');
+      var hit = f === 'all' || tags.indexOf(f) > -1;
+      it.classList.toggle('dim', !hit);
+      if (hit) n++;
+      it.querySelectorAll('.tags li').forEach(function (t) {
+        t.classList.toggle('on', f !== 'all' && t.getAttribute('data-tag') === f);
+      });
+    });
+    matchEl.textContent = f === 'all'
+      ? 'Showing all ' + items.length + ' items.'
+      : n + ' of ' + items.length + ' items use ' + names[f] + '.';
+  }
+  buttons.forEach(function (b) { b.addEventListener('click', function () { applyFilter(b.getAttribute('data-filter')); }); });
+  document.querySelectorAll('[data-jump]').forEach(function (c) {
+    c.addEventListener('click', function () {
+      applyFilter(c.getAttribute('data-jump'));
+      document.getElementById('work').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+    });
+  });
+
+  /* Copy email */
+  var status = document.getElementById('copyStatus');
+  var email = 'yashnikam1811@gmail.com';
+  document.getElementById('copyEmail').addEventListener('click', function () {
+    function done(ok) { status.textContent = ok ? 'Copied' : 'Copy failed. Select the address above.'; setTimeout(function () { status.textContent = ''; }, 2500); }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(function () { done(true); }, function () { done(false); });
+      } else { done(false); }
+    } catch (e) { done(false); }
+  });
+
+  /* Compose mail */
+  document.getElementById('sendMsg').addEventListener('click', function () {
+    var name = document.getElementById('cName').value.trim();
+    var msg = document.getElementById('cMsg').value.trim();
+    var subject = 'Portfolio enquiry' + (name ? ' from ' + name : '');
+    var body = msg + (name ? '\n\n' + name : '');
+    var a = document.createElement('a');
+    a.href = 'mailto:' + email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    a.target = '_blank';
+    a.rel = 'noopener';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  });
+})();
+</script>
+</body>
+</html>
